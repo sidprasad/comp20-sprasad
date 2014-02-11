@@ -1,0 +1,40 @@
+
+
+@media (min-width: 992px) {
+
+	body
+	{
+		background-image:url('omfgdogs.gif');
+		background-repeat:repeat;
+	}
+
+	h1
+	{
+		display:none;
+	}
+
+}
+
+p
+{
+	position:fixed;
+	bottom:10px;
+	right:5px;
+	text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+	color:white;
+	font-family:"Arial", sans-serif;
+	font-size:20px
+
+}
+
+a:link
+{
+	color:#a8ea49;
+	text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+
+a:visited
+{
+	color:#a8ea49;
+}
+
