@@ -15,6 +15,13 @@ function update()
 	//Here, find a way to do the double character thing, eg 02 for 2
 	message = d.getMonth()+'/'+ d.getDate() + '/' + d.getFullYear() + ' ' + d.getHours() + ':' + d.getMinutes() + ' - ' + message; 
 
+	var elem = document.getElementById("status");
+	var txt = document.createTextNode(message);
+	var para = document.createElement("p");
+
+	para.appendChild(txt);
+	elem.insertBefore(para, elem.firstChild);
+
 }
 
 </script>
