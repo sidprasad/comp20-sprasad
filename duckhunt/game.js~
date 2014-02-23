@@ -1,5 +1,8 @@
-// Your work goes here...
 
+/*
+This function draws the sky, dirt road, grass, trees, bushes, a dog and 5 birds
+on the canvas.
+*/
 function draw() {
 
 	var canvas = document.getElementById("game");
@@ -21,8 +24,25 @@ function draw() {
 		//Drawing the dirt and grass
 		ctx.drawImage(img, 0, 706, 900, 194, 0, 406, 800, 194);
 		//Drawing the dog sniffing the road
-		ctx.drawImage(img, 0, 58.5, 900, 194, 0, 406, 800, 194);
+		ctx.drawImage(img, 0, 0, 58, 45, 300, 450, 150, 116);
 		
+		//Drawing the first bird
+		ctx.drawImage(img, 0, 118, 35, 27.5, 400, 50, 90, 59.4595);
+		
+		//Drawing the second bird
+		ctx.drawImage(img, 165, 156.5, 205-165, 188.5 - 156.5,
+						 100, 70, 100, 66.0661);
+
+		//Drawing the third bird
+		ctx.drawImage(img, 0, 195, 31, 228-195, 500, 200, 90, 63);
+
+		//Drawing the fourth bird
+		ctx.drawImage(img, 262, 155, 289-262, 188.5-155, 
+						650, 20, 70, 86.8519);
+
+		//Drawing the fifth bird
+		ctx.drawImage(img, 78, 117, 113.5-78, 148-117, 240, 270,
+							 80, 69.8592);
 	}
 	img.src = "assets/duckhunt.png";
 	
