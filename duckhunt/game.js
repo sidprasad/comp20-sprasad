@@ -12,6 +12,14 @@ function draw() {
 
 	ctx.fillStyle = "#87CEEB";
 	ctx.fillRect(0,0, 800, 600);
+	var img = new Image();
+	//Once the image is loaded, do the following
+	img.onload = function () {
+		//Drawing the dirt and grass
+		ctx.drawImage(img, 0, 706, 900, 194, 0, 406, 800, 194);
+	}
+	img.src = "assets/duckhunt.png";
+	
 
 
 }
