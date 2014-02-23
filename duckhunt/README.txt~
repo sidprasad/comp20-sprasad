@@ -1,0 +1,16 @@
+README for Comp 20 Assignment 2
+
+2/23/2014
+Siddhartha Prasad
+
+The following files are included in the submission, and have been
+correctly implemented:
+	- index.html: HTML page for Duckhunt with a canvas
+	- game.js : Contains JavaScript code to draw a sky, dirt road
+		    and grass, tree, dog and five birds on the canvas.
+	- style.css : Stylesheet for index.html
+	- assets/duckhunt.png: Spritesheet for images drawn
+
+Hours spent working: 2 hours
+
+
