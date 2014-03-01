@@ -1,0 +1,26 @@
+Comp 20 Lab 6
+
+Siddhartha Prasad
+
+var job_listings = JSON.parse(str);
+
+	var elem = document.getElementById("list");	
+	for (i in job_listings) {
+
+		company = document.createTextNode('Company: ' +
+					job_listings[i].company);
+		location = document.createTextNode('Location: ' +
+					job_listings[i].location);
+
+		position = document.createTextNode('Position: ' +
+					job_listings[i].position);
+		
+		para = document.createElement("p");
+
+		para.appendChild(company);
+		para.appendChild(location);
+		para.appendChild(position);
+		elem.insertBefore(para, elem.firstChild);
+		}
+	
+	}

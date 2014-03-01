@@ -26,8 +26,8 @@
 		para3 = document.createElement("p");
 
 		para1.appendChild(company);
-		para2.appendChild(pos);
-		para3.appendChild(loc);
+		para2.appendChild(loc);
+		para3.appendChild(pos);
 
 		division.appendChild(para1, division.firstChild);
 		division.appendChild(para2, division.firstChild);
