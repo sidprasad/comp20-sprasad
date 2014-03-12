@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+<title>Transit</title>
+<script src="transit.js"> </script>
+
+<link real="stylesheet" href="style.css">
+</head>
+
+<body onload="init()">
+<div id="map"> </div>
+</body>
+</html>
+
+
