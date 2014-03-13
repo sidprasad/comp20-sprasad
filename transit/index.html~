@@ -4,13 +4,14 @@
 
 <head>
 <title>Transit</title>
+<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=true&amp;libraries=places"></script>
 <script src="transit.js"> </script>
+<link rel="stylesheet" href="style.css">
 
-<link real="stylesheet" href="style.css">
 </head>
 
 <body onload="init()">
-<div id="map"> </div>
+<div id="T_map"> </div>
 </body>
 </html>
 
