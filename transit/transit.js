@@ -134,46 +134,84 @@ function renderMap()
 	markStations();		
 }
 function markStations (){
-	console.log(scheduleData.line);	
+	var logo;
+	
 	line_colour = scheduleData.line;
 	if (line_colour == 'blue') {
+		logo='blue-stars.png';
 		for(i in Blue) {
-			createMarker(Blue[i]);
+			createMarker(Blue[i],logo);
 		}		
 	}
 		
 	if (line_colour == 'orange') {
+		logo='orange-stars.png';
 		for(i in Orange) {
-			createMarker(Orange[i]);
+			createMarker(Orange[i],logo);
 		}		
 	}
 	
 	if (line_colour == 'red') {
+		logo='red-stars.png';
 		for(i = 0; i <18; i++ ) {
-			createMarker(Red[i]);
+			createMarker(Red[i],logo);
 		}
 		for(i = 18; i <= 21; i++) {
-			createMarker(Red[i]);
+			createMarker(Red[i],logo);
 		}
 	}
 }
 			
-function createMarker(place)
+function createMarker(place, logo)
 {
 	var placeLoc = new google.maps.LatLng(place[1],place[2]);
-	//Get icon here, iconSource
 	var marker = new google.maps.Marker({
 		map: map,
-		position: placeLoc
-		//icon: iconSource
+		position: placeLoc,
+		icon: logo
 	});
 
 	google.maps.event.addListener(marker, 'click', function() {
 		infowindow.close();
-		infowindow.setContent(place.name);
+		infowindow.setContent(stationTable(place));
 		infowindow.open(map, this);
 	});
 }
+
+function stationTable(place) {
+	//Adding name to stationInfo	
+	stationInfo = place[0];
+	var stationTable = document.createElement("table");
+	stationInfo = stationInfo + "<table><tr><th>Line</th><th>Trip  #<th><th>Destination</th><th>Time Remaining</th></tr>";
+
+	//Getting train wait times and destinations from scheduleData
+	//For each station:
+	for (i in scheduleData.schedule) {
+		for (j in scheduleData.schedule[i].Predictions) {
+			if (place[0] == scheduleData.schedule[i].Predictions[j].Stop) { 
+               			 stationInfo = stationInfo + "<tr><td>" + scheduleData.line.toUpperCase() + '</td><td>' + scheduleData.schedule[i].TripID + "<td><td>";
+                			stationInfo += scheduleData.schedule[i].Destination + "</td><td>" + 
+                   			 formatTime(scheduleData.schedule[i].Predictions[j].Seconds) + "</td></tr>";
+            }
+
+		}
+	}
+	stationInfo = stationInfo + '</table>';
+
+	return stationInfo;
+}
+
+
+function formatTime(num_seconds) {
+	var num_minutes = Math.floor(num_seconds / 60);
+	num_seconds = num_seconds % 60;
+	if (num_seconds<10) {
+		num_seconds = '0' + num_seconds;
+	}
+	var time_formatted = num_minutes + ':' + num_seconds;
+	return time_formatted;
+}
+
 
 
 function stationMarker(place)

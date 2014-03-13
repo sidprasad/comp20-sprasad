@@ -5,75 +5,65 @@ Blue = new Object();
 Red = new Object();
 Orange = new Object();
 //Order: Name, Latitude, Longitude
-blue[0] =["Airport",42.374262,-71.030395]
-Blue[ Aquarium	42.359784	-71.051652
-Blue	Beachmont	42.39754234	-70.99231944
-Blue	Bowdoin	42.361365	-71.062037
-Blue	Government Center	42.359705	-71.059215
-Blue	Maverick	42.36911856	-71.03952958
-Blue	Orient Heights	42.386867	-71.004736
-Blue	Revere Beach	42.40784254	-70.99253321
-Blue	State Street	42.358978	-71.057598
-Blue	Suffolk Downs	42.39050067	-70.99712259
-Blue	Wonderland	42.41342	-70.991648
-Blue	Wood Island	42.3796403	-71.02286539
-Orange	Back Bay	42.34735	-71.075727
-Orange	Chinatown	42.352547	-71.062752
-Orange	Community College	42.373622	-71.069533
-Orange	Downtown Crossing	42.355518	-71.060225
-Orange	Forest Hills	42.300523	-71.113686
-Orange	Green Street	42.310525	-71.107414
-Orange	Haymarket	42.363021	-71.05829
-Orange	Jackson Square	42.323132	-71.099592
-Orange	Malden Center	42.426632	-71.07411
-Orange	Mass Ave	42.341512	-71.083423
-Orange	North Station	42.365577	-71.06129
-Orange	Oak Grove	42.43668	-71.071097
-Orange	Roxbury Crossing	42.331397	-71.095451
-Orange	Ruggles	42.336377	-71.088961
-Orange	State Street	42.358978	-71.057598
-Orange	Stony Brook	42.317062	-71.104248
-Orange	Sullivan	42.383975	-71.076994
-Orange	Tufts Medical	42.349662	-71.063917
-Orange	Wellington	42.40237	-71.077082
-Red	Alewife	42.395428	-71.142483
-Red	Andrew	42.330154	-71.057655
-Red	Ashmont	42.284652	-71.064489
-Red	Braintree	42.2078543	-71.0011385
-Red	Broadway	42.342622	-71.056967
-Red	Central Square	42.365486	-71.103802
-Red	Charles/MGH	42.361166	-71.070628
-Red	Davis	42.39674	-71.121815
-Red	Downtown Crossing	42.355518	-71.060225
-Red	Fields Corner	42.300093	-71.061667
-Red	Harvard Square	42.373362	-71.118956
-Red	JFK/UMass	42.320685	-71.052391
-Red	Kendall/MIT	42.36249079	-71.08617653
-Red	North Quincy	42.275275	-71.029583
-Red	Park Street	42.35639457	-71.0624242
-Red	Porter Square	42.3884	-71.119149
-Red	Quincy Adams	42.233391	-71.007153
-Red	Quincy Center	42.251809	-71.005409
-Red	Savin Hill	42.31129	-71.053331
-Red	Shawmut	42.29312583	-71.06573796
-Red	South Station	42.352271	-71.055242
-Red	Wollaston	42.2665139	-71.0203369
-
-
-//
+Blue[6] =["Airport",42.374262,-71.030395];
+Blue[8] =["Aquarium",42.359784,-71.051652];
+Blue[2] =["Beachmont",42.39754234,-70.99231944];
+Blue[11] =["Bowdoin",42.361365,-71.062037];
+Blue[10] =["Government Center",42.359705,-71.059215];
+Blue[7] =["Maverick",42.36911856,-71.03952958];
+Blue[4] =["Orient Heights",42.386867,-71.004736];
+Blue[1] =["Revere Beach",42.40784254,-70.99253321];
+Blue[9] =["State Street",42.358978,-71.057598];
+Blue[3] =["Suffolk Downs",42.39050067,-70.99712259];
+Blue[0] =["Wonderland",42.41342,-70.991648];
+Blue[5] =["Wood Island",42.3796403,-71.02286539];
+Orange[11] =["Back Bay",	42.34735,-71.075727];
+Orange[9] =["Chinatown",42.352547,-71.062752];
+Orange[4] =["Community College",42.373622,-71.069533];
+Orange[8] =["Downtown Crossing",42.355518,-71.060225];
+Orange[18] =["Forest Hills",42.300523,-71.113686];
+Orange[17] =["Green Street",42.310525,-71.107414];
+Orange[6] =["Haymarket",42.363021,-71.05829];
+Orange[15] =["Jackson Square",42.323132,-71.099592];
+Orange[1] =["Malden Center",42.426632,-71.07411];
+Orange[12] =["Mass Ave",42.341512,-71.083423];
+Orange[5] =["North Station",42.365577,-71.06129];
+Orange[0] =["Oak Grove",42.43668,-71.071097];
+Orange[14] =["Roxbury Crossing",42.331397,-71.095451];
+Orange[13] =["Ruggles",42.336377,-71.088961];
+Orange[7] =["State Street",42.358978,-71.057598];
+Orange[16] =["Stony Brook",42.317062,-71.104248];
+Orange[3] =["Sullivan",42.383975,-71.076994];
+Orange[10] =["Tufts Medical",42.349662,-71.063917];
+Orange[2] =["Wellington", 42.40237, -71.077082];
+Red[0] =["Alewife",42.395428,-71.142483];
+Red[11] =["Andrew",42.330154,-71.057655];
+Red[21] =["Ashmont",42.284652,-71.064489];
+Red[17] =["Braintree",42.2078543,-71.0011385];
+Red[10] =["Broadway",42.342622,-71.056967];
+Red[4] =["Central Square",42.365486,-71.103802];
+Red[6] =["Charles/MGH",42.361166,-71.070628];
+Red[1] =["Davis",42.39674,-71.121815];
+Red[8] =["Downtown Crossing",42.355518,-71.060225];
+Red[19] =["Fields Corner",42.300093,-71.061667];
+Red[3]= ["Harvard Square",42.373362,-71.118956];
+Red[12] =["JFK/UMass",42.320685,-71.052391];
+Red[5]= ["Kendall/MIT",42.36249079,-71.08617653];
+Red[13] =["North Quincy",42.275275,-71.029583];
+Red[7]=	["Park Street",42.35639457,-71.0624242];
+Red[2]=	["Porter Square",42.3884,-71.119149];
+Red[16] =["Quincy Adams",42.233391,-71.007153];
+Red[15] =["Quincy Center",42.251809,-71.005409];
+Red[18] =["Savin Hill",42.31129,-71.053331];
+Red[20] =["Shawmut",42.29312583,-71.06573796];
+Red[9]=	["South Station",42.352271,-71.055242];
+Red[14] = ["Wollaston",42.2665139,-71.0203369];
 //
 //
 var myLat = 0;
 var myLng = 0;
 var request = new XMLHttpRequest();
-var me = new google.maps.LatLng(myLat, myLng);
 var scheduleData;
-
-var myOptions = {
-		zoom: 13, // The larger the zoom number, the bigger the zoom
-		center: me,
-		mapTypeId: google.maps.MapTypeId.ROADMAP
-};
 var map;
 var marker;
 var infowindow = new google.maps.InfoWindow();
@@ -81,11 +71,10 @@ var places;
 		
 function init()
 {
-	map = new google.maps.Map(document.getElementById("T_map"), myOptions);
 	request.open("get", "http://mbtamap.herokuapp.com/mapper/rodeo.json", true);
-	xhr.onreadstatechange = dataReady;
-	xhr.send(null);
-
+	
+	request.send(null);
+	request.onreadystatechange = dataReady;
 }
 
 function dataReady() {
@@ -107,6 +96,14 @@ function getLocation()
 		navigator.geolocation.getCurrentPosition(function(position) {
 		myLat = position.coords.latitude;
 		myLng = position.coords.longitude;
+		me = new google.maps.LatLng(myLat, myLng);
+		myOptions = {
+				zoom: 13, // The larger the zoom number, the bigger the zoom
+				center: me,
+				mapTypeId: google.maps.MapTypeId.ROADMAP
+		};
+		map = new google.maps.Map(document.getElementById("T_map"), myOptions);
+
 		renderMap();
 		});
 	} else {
@@ -117,6 +114,7 @@ function getLocation()
 function renderMap()
 {
 	me = new google.maps.LatLng(myLat, myLng);	
+	
 	// Update map and go there...
 	map.panTo(me);
 	// Create a marker
@@ -136,26 +134,84 @@ function renderMap()
 	markStations();		
 }
 function markStations (){
+	var logo;
 	
-	line_colour = request.line;
-	//If stations = blue, mark blue array, etc
-
+	line_colour = scheduleData.line;
+	if (line_colour == 'blue') {
+		logo='blue-stars.png';
+		for(i in Blue) {
+			createMarker(Blue[i],logo);
+		}		
+	}
+		
+	if (line_colour == 'orange') {
+		logo='orange-stars.png';
+		for(i in Orange) {
+			createMarker(Orange[i],logo);
+		}		
+	}
+	
+	if (line_colour == 'red') {
+		logo='red-stars.png';
+		for(i = 0; i <18; i++ ) {
+			createMarker(Red[i],logo);
+		}
+		for(i = 18; i <= 21; i++) {
+			createMarker(Red[i],logo);
+		}
+	}
 }
 			
-function createMarker(place)
+function createMarker(place, logo)
 {
-	var placeLoc = place.geometry.location;
+	var placeLoc = new google.maps.LatLng(place[1],place[2]);
 	var marker = new google.maps.Marker({
 		map: map,
-		position: place.geometry.location
+		position: placeLoc,
+		icon: logo
 	});
 
 	google.maps.event.addListener(marker, 'click', function() {
 		infowindow.close();
-		infowindow.setContent(place.name);
+		infowindow.setContent(stationTable(place));
 		infowindow.open(map, this);
 	});
 }
+
+function stationTable(place) {
+	//Adding name to stationInfo	
+	stationInfo = place[0].toUpperCase();
+	var stationTable = document.createElement("table");
+	stationInfo = stationInfo + "<table><tr><th>Line</th><th>Trip  #<th><th>Destination</th><th>Time Remaining</th></tr>";
+
+	//Getting train wait times and destinations from scheduleData
+	//For each station:
+	for (i in scheduleData.schedule) {
+		for (j in scheduleData.schedule[i].Predictions) {
+			if (place[0] == scheduleData.schedule[i].Predictions[j].Stop) { 
+               			 stationInfo = stationInfo + "<tr><td>" + scheduleData.line + '</td><td>' + scheduleData.schedule[i].TripID + "<td><td>";
+                			stationInfo += scheduleData.schedule[i].Destination + "</td><td>" + 
+                   			 formatTime(scheduleData.schedule[i].Predictions[j].Seconds) + "</td></tr>";
+            }
+
+		}
+	}
+	stationInfo = stationInfo + '</table>';
+
+	return stationInfo;
+}
+
+
+function formatTime(num_seconds) {
+	var num_minutes = Math.floor(num_seconds / 60);
+	num_seconds = num_seconds % 60;
+	if (num_seconds<10) {
+		num_seconds = '0' + num_seconds;
+	}
+	var time_formatted = num_minutes + ':' + num_seconds;
+	return time_formatted;
+}
+
 
 
 function stationMarker(place)
