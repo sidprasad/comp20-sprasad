@@ -60,17 +60,23 @@ Red[9]=	["South Station",42.352271,-71.055242];
 Red[14] = ["Wollaston",42.2665139,-71.0203369];
 //
 //
+var kmtoMile = 0.621371;
 var myLat = 0;
 var myLng = 0;
-var request = new XMLHttpRequest();
+var request;
 var scheduleData;
 var map;
 var marker;
-var infowindow = new google.maps.InfoWindow();
+var infowindow;
 var places;
+//Distance is greater than 1.7976931348623157E+10308, which is greater than
+//floating point numbers
+var nearest = {"name":'NONE', "distance":1.7976931348623157E+10308};
 		
 function init()
 {
+	request = new XMLHttpRequest();
+	infowindow = new google.maps.InfoWindow();
 	request.open("get", "http://mbtamap.herokuapp.com/mapper/rodeo.json", true);
 	
 	request.send(null);
@@ -84,8 +90,10 @@ function dataReady() {
 
 	}
 	else if (request.readyState == 4 && request.status == 500) {
-			mapDom = document.getElementById("T_map");
-			mapDom.innerHTML = '<p>Could not load</p>';
+			//mapDom = document.getElementById("T_map");
+			//mapDom.innerHTML = '<p>Could not load</p>';
+			alert('Error fetching data! Press OK to reload');
+			init();
 	}
 }
 			
@@ -114,14 +122,16 @@ function getLocation()
 function renderMap()
 {
 	me = new google.maps.LatLng(myLat, myLng);	
-	
+		markStations();	
 	// Update map and go there...
 	map.panTo(me);
+
+
 	// Create a marker
-	// WILL HAVE TO CHANGE THIS SOON
 	marker = new google.maps.Marker({
+		
 		position: me,
-		title: "You are here"
+		title: "You are here; "+ (nearest.distance * kmtoMile) +" miles from the nearest " + scheduleData.line + " line station --" + (nearest.name)
 	});
 	marker.setMap(map);
 					
@@ -131,15 +141,47 @@ function renderMap()
 		infowindow.open(map, marker);
 	});
 	
-	markStations();		
+	
 }
+
+function calculateDistance(place) {
+
+   //Credit to stackoverflow question 
+   //http://stackoverflow.com/questions/14560999/using-the-haversine-formula-in-javascript 
+
+	var destLat = place[1]; 
+	var destLong = place[2]; 
+
+
+	var R = 6371; // km 
+	
+	var x1 = destLat - myLat;
+	var dLat = toRad(x1);  
+	var x2 = destLong-myLng;
+	var dLon = toRad(x2);
+ 
+	var a = Math.sin(dLat/2) * Math.sin(dLat/2) + 
+                Math.cos(toRad(myLat)) * Math.cos(toRad(place[1])) * 
+                Math.sin(dLon/2) * Math.sin(dLon/2);  
+	
+	var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
+	var d = R * c; 
+
+	return d;
+}
+
 function markStations (){
 	var logo;
-	
+	var min_dist = nearest.distance;
+	var min_name =nearest.name;
 	line_colour = scheduleData.line;
 	if (line_colour == 'blue') {
 		logo='blue-stars.png';
 		for(i in Blue) {
+			if(calculateDistance(Blue[i]) < min_dist) {
+				min_dist = calculateDistance(Blue[i]);
+				min_name = Blue[i][0];
+			}
 			createMarker(Blue[i],logo);
 		}		
 	}
@@ -147,6 +189,10 @@ function markStations (){
 	if (line_colour == 'orange') {
 		logo='orange-stars.png';
 		for(i in Orange) {
+			if(calculateDistance(Orange[i]) < min_dist) {
+				min_dist = calculateDistance(Orange[i]);
+				min_name = Orange[i][0];
+			}
 			createMarker(Orange[i],logo);
 		}		
 	}
@@ -154,12 +200,28 @@ function markStations (){
 	if (line_colour == 'red') {
 		logo='red-stars.png';
 		for(i = 0; i <18; i++ ) {
+			if(calculateDistance(Orange[i]) < min_dist) {
+				min_name = Red[i][0];
+				min_dist = calculateDistance(Red[i]);
+			}
 			createMarker(Red[i],logo);
 		}
 		for(i = 18; i <= 21; i++) {
+			if(calculateDistance(Red[i]) < min_dist) {
+				min_name = Red[i][0];
+				min_dist = calculateDistance(Red[i]);
+			}
 			createMarker(Red[i],logo);
 		}
 	}
+
+	nearest.name = min_name;
+	nearest.distance = min_dist;
+
+}
+
+function toRad(num) {
+	return (num*Math.PI / 180)
 }
 			
 function createMarker(place, logo)
