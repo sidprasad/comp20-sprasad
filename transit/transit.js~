@@ -1,6 +1,4 @@
-
-
-//Hardcode arrays here!!
+// Written by Siddhartha Prasad
 Blue = new Object();
 Red = new Object();
 Orange = new Object();
@@ -58,8 +56,8 @@ Red[18] =["Savin Hill",42.31129,-71.053331];
 Red[20] =["Shawmut",42.29312583,-71.06573796];
 Red[9]=	["South Station",42.352271,-71.055242];
 Red[14] = ["Wollaston",42.2665139,-71.0203369];
-//
-//
+
+//km to mile conversion factor
 var kmtoMile = 0.621371;
 var myLat = 0;
 var myLng = 0;
@@ -107,6 +105,7 @@ function getLocation()
 		me = new google.maps.LatLng(myLat, myLng);
 		myOptions = {
 				zoom: 13, // The larger the zoom number, the bigger the zoom
+				icon:'grn-blank.png',
 				center: me,
 				mapTypeId: google.maps.MapTypeId.ROADMAP
 		};
@@ -149,7 +148,6 @@ function calculateDistance(place) {
    //Credit to stackoverflow question 
    //http://stackoverflow.com/questions/14560999/using-the-haversine-formula-in-javascript 
 
-	console.log(place[0]);
 	var destLat = place[1]; 
 	var destLong = place[2]; 
 
@@ -173,51 +171,80 @@ function calculateDistance(place) {
 
 function markStations (){
 	var logo;
+	//lineCoords holds the coordinates of the station on the line,
+	//so that a polyline can be drawn.
+	var lineCoords = [];
 	var min_dist = nearest.distance;
 	var min_name =nearest.name;
 	line_colour = scheduleData.line;
 	if (line_colour == 'blue') {
 		logo='blue-stars.png';
 		for(i in Blue) {
+			lineCoords[i] = new google.maps.LatLng(Blue[i][1], Blue[i][2]);
 			if(calculateDistance(Blue[i]) < min_dist) {
 				min_dist = calculateDistance(Blue[i]);
 				min_name = Blue[i][0];
 			}
 			createMarker(Blue[i],logo);
-		}		
+		}
+		drawLine(lineCoords, '#0000FF');		
 	}
 		
 	if (line_colour == 'orange') {
 		logo='orange-stars.png';
 		for(i in Orange) {
+			lineCoords[i] = new google.maps.LatLng(Orange[i][1], Orange[i][2]);
 			if(calculateDistance(Orange[i]) < min_dist) {
 				min_dist = calculateDistance(Orange[i]);
 				min_name = Orange[i][0];
 			}
 			createMarker(Orange[i],logo);
-		}		
+		}	
+		drawLine(lineCoords, '#FF6600');	
 	}
 	
 	if (line_colour == 'red') {
 		logo='red-stars.png';
 		for(i = 0; i <18; i++ ) {
-			if(calculateDistance(Orange[i]) < min_dist) {
+		lineCoords[i] = new google.maps.LatLng(Red[i][1], Red[i][2]);
+			if(calculateDistance(Red[i]) < min_dist) {
+				
 				min_name = Red[i][0];
 				min_dist = calculateDistance(Red[i]);
 			}
 			createMarker(Red[i],logo);
 		}
+		drawLine(lineCoords, '#FF0000');
+
+		lineCoords = [];
+		lineCoords[0] = new google.maps.LatLng(Red[12][1], Red[12][2]);
 		for(i = 18; i <= 21; i++) {
+			lineCoords[i-17] = new google.maps.LatLng(Red[i][1], Red[i][2]);
 			if(calculateDistance(Red[i]) < min_dist) {
 				min_name = Red[i][0];
 				min_dist = calculateDistance(Red[i]);
 			}
 			createMarker(Red[i],logo);
 		}
+	
+		drawLine(lineCoords, '#FF0000');
 	}
 
 	nearest.name = min_name;
 	nearest.distance = min_dist;
+
+}
+
+function drawLine(lineCoord, colour) {
+//Using polyline from the google maps API to draw lines
+   var MBTA_line = new google.maps.Polyline({
+    path: lineCoord,
+    geodesic: true,
+    strokeColor: colour,
+    strokeOpacity: 1.0,
+    strokeWeight: 2
+  });
+	MBTA_line.setMap(map);
 
 }
 
@@ -291,3 +318,4 @@ function stationMarker(place)
 		infowindow.open(map, this);
 	});
 }
+
