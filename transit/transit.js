@@ -129,8 +129,7 @@ function renderMap()
 	marker = new google.maps.Marker({
 		
 		position: me,
-		title: "You are here; "+ (nearest.distance * kmtoMile) +" miles from the nearest " + scheduleData.line + " line station --" + (nearest.name)
-	});
+		title: "You are here; "+ (nearest.distance * kmtoMile).toFixed(4) +" miles from "+nearset.name +" the nearest " + scheduleData.line + " line station"});
 	marker.setMap(map);
 					
 	// Open info window on click of marker
