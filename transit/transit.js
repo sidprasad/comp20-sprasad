@@ -131,7 +131,9 @@ function renderMap()
 		position: me,
 		title: "You are here; "+ (nearest.distance * kmtoMile).toFixed(4) +" miles from "+nearset.name +" the nearest " + scheduleData.line + " line station"});
 	marker.setMap(map);
-					
+	
+	infowindow.setContent(marker.title);
+	infowindow.open(map, marker);	
 	// Open info window on click of marker
 	google.maps.event.addListener(marker, 'click', function() {
 		infowindow.setContent(marker.title);
