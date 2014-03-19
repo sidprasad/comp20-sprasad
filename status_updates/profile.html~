@@ -18,17 +18,27 @@ function update()
 	var elem = document.getElementById("status");
 	var txt = document.createTextNode(message);
 	var para = document.createElement("p");
-
+	localStorage[new Date().getTime()] = message;
 	para.appendChild(txt);
 	elem.insertBefore(para, elem.firstChild);
 
+}
+
+function reload()
+{
+		elem = document.getElementById("status");
+		output = "";
+		for (key in localStorage) {
+			output = "<p>" + localStorage[key] + "</p>\n" + output;
+		}
+		elem.innerHTML = output;
 }
 
 </script>
 
 </head>
 
-<body>
+<body onload="reload()">
 	<h1>Fecebook</h1>
 	<div id="nav">
 		<ul>

@@ -1,3 +1,8 @@
+README for Local Storage Lab
+-Stored Statuses as local storage.
+- Heroku URI : 
+
+------------------------------------------------------------------------------------
 Readme for status_updates Lab
 
 Files Included:
@@ -11,3 +16,6 @@ Collaboration:
 - Skyler Tom
 - George Brown
 - Victor Chao
+
+-----------------------------------------------------------------------------------
+
