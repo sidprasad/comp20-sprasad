@@ -1,6 +1,6 @@
 README for Local Storage Lab
 -Stored Statuses as local storage.
-- Heroku URI : 
+- Heroku URI : http://salty-caverns-1846.herokuapp.com/
 
 ------------------------------------------------------------------------------------
 Readme for status_updates Lab
