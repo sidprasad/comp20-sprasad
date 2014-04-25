@@ -14,12 +14,22 @@
 <div id=name><h3> Siddhartha Prasad, Comp 20 Assignment 5</h3></div>
 <h2> Introduction </h2>
  
-<p> This document provides an assessment of the security of the <a href="cryptic-falls-3284.herokuapp.com">2048-Gamecenter </a> application developed by Stephen Panaro. According to the client specifications, Gamecenter </p>
+<p> This document provides an assessment of the security of the <a href="cryptic-falls-3284.herokuapp.com">2048-Gamecenter </a> application developed by Stephen Panaro. According to the client specifications, Gamecenter is a "web application that maintains final scores and grids for all your (and perhaps for other players') 2048 games for a long period of time". It offers a web interface to view high-scores as well as an API to get a particular player's scores by username. Scores can be submitted via a POST to the application.</p>
 
+<p> This document not only identifies potential security threats to this application, but also suggest some ways to avoid these threats. </p>
 
 <h2> Methodology</h2>
+<p> Tests on the application were initially carried out without looking at the applications code ("Black box testing"), with the resources and information an attacker might have at his/her disposal.<br> The application source-code was then looked at, and further security flaws were identified ("White box testing").</p>
+<p> Very basic tools were used in carrying out these tests. These were:
+<ul>
+<li> Bash Scripting</li>
+<li> cURL </li>
+</ul>
+</p>
 
 <h2> Abstract of Findings </h2>
+<p> Most of the security issues in this app are caused by trusting user input and putting very little thought into database security. Not only can any individual send any sort of information to the app from any location, but confidential database information is readily available to whoever wants it. Thus, users of Gamecenter are at risk of having sensitive information made public. This application is not safe to use unless the issues found below are put to rest.
+</p>
 
 <h2>Issues Found</h2>
 
