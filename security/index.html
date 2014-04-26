@@ -37,9 +37,8 @@ Application did not work properly -- not a security concern, but needs to be add
 <ol>
 <li> <h3>NoSQL (Mongo) Injection (PHP) </h3>
 	<p> Tested: Black Box </p>
-  <p>Affects: <code>/scores.json </code> (GET API)
-  <p> Priority <div class=high>High</div>: This flaw allows for the entire Gamecenter database to be accessed by a user. 
-  Thus, sensitive client information not readily available (such as Grids) can be easily accessed by a malicious user</p>
+  <p>Affects: <code>/scores.json </code> (GET API) </p>
+  <p> Priority <div class=high>High</div>: This flaw allows for the entire Gamecenter database to be accessed by a user.Thus, sensitive client information not readily available (such as Grids) can be easily accessed by a malicious user</p>
   
   <p> Such an attack is executed by inserting the <code>[$ne]</code> operator into the query. This searches the database for everything not equal to the search parameter. For example, the GET request in a browser could be <code>http://cryptic-falls-3284.herokuapp.com/scores.json?username[$ne]=steve </code>.
   The executed query allows for all records in the database where the username is not equal to 'steve' to be accessed by the user. Thus, if this query is executed twice with two different username values, the entire database is available to the user. </p>
@@ -100,7 +99,7 @@ done <br>
 		var grid = req.body.grid;<br>
 		var score = req.body.score;<br>
 		var created_at = new Date();<br>
-		if (key == 'spanaro' &(username !== undefined || grid !== undefined || score !== undefined)) { <br>
+		if (key == 'spanaro' &amp;(username !== undefined || grid !== undefined || score !== undefined)) { <br>
 			//Add grid, score username and created_at to the database <br>
 		}<br>
 		</code>
