@@ -1,9 +1,9 @@
-<! DOCTYPE HTML>
+<!DOCTYPE HTML>
 
 <html>
 
 <head>
-
+	<meta charset="UTF-8">
 	 <title>Gamecenter Security Report</title>
 
 </head>
@@ -20,12 +20,11 @@
 
 <h2> Methodology</h2>
 <p> Tests on the application were initially carried out without looking at the applications code ("Black box testing"), with the resources and information an attacker might have at his/her disposal.<br> The application source-code was then looked at, and further security flaws were identified ("White box testing").</p>
-<p> Very basic tools were used in carrying out these tests. These were:
+<p> Very basic tools were used in carrying out these tests. These were: </p>
 <ul>
 <li> Bash Scripting</li>
 <li> cURL </li>
 </ul>
-</p>
 
 <h2> Abstract of Findings </h2>
 <p> Most of the security issues in this app are caused by trusting user input and putting very little thought into database security. Not only can any individual send any sort of information to the app from any location, but confidential database information is readily available to whoever wants it. Thus, users of Gamecenter are at risk of having sensitive information made public. This application is not safe to use unless the issues found below are put to rest.
@@ -38,14 +37,13 @@ Application did not work properly -- not a security concern, but needs to be add
 <ol>
 <li> <h3>NoSQL (Mongo) Injection (PHP) </h3>
 	<p> Tested: Black Box </p>
-  <p>Affects: <code>/scores.json </code> (GET API)
-  <p> Priority <div class=high>High</div>: This flaw allows for the entire Gamecenter database to be accessed by a user. 
-  Thus, sensitive client information not readily available (such as Grids) can be easily accessed by a malicious user</p>
+  <p>Affects: <code>/scores.json </code> (GET API) </p>
+  <p> Priority High: This flaw allows for the entire Gamecenter database to be accessed by a user.Thus, sensitive client information not readily available (such as Grids) can be easily accessed by a malicious user</p>
   
   <p> Such an attack is executed by inserting the <code>[$ne]</code> operator into the query. This searches the database for everything not equal to the search parameter. For example, the GET request in a browser could be <code>http://cryptic-falls-3284.herokuapp.com/scores.json?username[$ne]=steve </code>.
   The executed query allows for all records in the database where the username is not equal to 'steve' to be accessed by the user. Thus, if this query is executed twice with two different username values, the entire database is available to the user. </p>
 	<p> Example: </p>
-	<img src="NoSQL_injection.png" alt="Screenshot of NoSQL injection" width="1000" height="500"/>
+	<img src="NoSQL_injection.png" alt="Screenshot of NoSQL injection" width="1000" height="500">
    <p>This issue can be prevented by validating queries before searching the database for them. For instance, queries could be escaped before the database uses them. This could be done using the JavaScript escape function as follows <code> var user = escape(req.query.username);</code>. Alternately certain characters such as &#36; could be specifically looked for before looking for the username in the database.</p>
 </li>
 
@@ -54,9 +52,9 @@ Application did not work properly -- not a security concern, but needs to be add
 	<p> Tested: White Box </p>
 	<p> Affects : <code>/games.json </code> (GET API) </p>
 
-	<p>Priority <div class=vhigh>Very High</div>: This flaw allows for the entire Gamecenter database to be accessed by the user. Thus, sensitive client information is readily available to the user. This problem is even worse than NoSQL injection, as no knowledge of the Database used or any programming is needed to access the database. </p>
+	<p>Priority Very High: This flaw allows for the entire Gamecenter database to be accessed by the user. Thus, sensitive client information is readily available to the user. This problem is even worse than NoSQL injection, as no knowledge of the Database used or any programming is needed to access the database. </p>
 	<p>Such an 'attack' can be executed simply by running a HTTP GET on   <code> http://cryptic-falls-3284.herokuapp.com/games.json </code>. For instance, this URI could be typed into a web browser. As <code>/games.json</code> was not defined in the Gamecenter specifications, this can definitely be considered a high priority security leak.</p>
-	<img src="gamesJSON.png" alt="Screenshot of /games.json output" width="1000" height="500"/>
+	<img src="gamesJSON.png" alt="Screenshot of /games.json output" width="1000" height="500">
 	<p>This can be prevented by removing the definition of <code>/games.json </code>  from the source code in the server.js file. It may have been the case that this API was designed for internal testing and needs to be preserved. In this case, CORS needs to be disabled in this API.</p>
 <p>	The code <code>app.all('*', function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
@@ -74,11 +72,10 @@ Application did not work properly -- not a security concern, but needs to be add
 <p> Tested: Black Box </p>
 	<p> Affects : <code>/submit.json </code> (POST API) </p>
 
-	<p>Priority <div class=med> Medium</div>: This flaw allows for the Gamecenter database to be filled to capacity by a malicious user. Thus, if the database is filled beyond capacity, the entire Gamecenter would be unable to function.</p>
+	<p>Priority Medium: This flaw allows for the Gamecenter database to be filled to capacity by a malicious user. Thus, if the database is filled beyond capacity, the entire Gamecenter would be unable to function.</p>
 	<p>Such an 'attack' can be executed by repeatedly running submit commands to the <code>/submit.json</code> API till the database is filled to capacity. A free MongoLabs database on Herokuapp is limited to a storage capacity of 496 MB. Thus, if more information is added to the database, it will be full beyond capacity.</p>
-	<!-- CODE and images HERE -->
 	
-	<p> Before the DoS 'attack' was executed, the app was opened in a web browser. The result was: <img src="BeforeDOS.png" alt="Screenshot of app before DoS attack" width="1000" height="500"/> </p>
+	<p> Before the DoS 'attack' was executed, the app was opened in a web browser. The result was: <img src="BeforeDOS.png" alt="Screenshot of app before DoS attack" width="1000" height="500"> </p>
 	
 	<p> The following bash script was run to inundate the database with scores: </p>
 	<code>#!/bin/sh  <br>
@@ -90,9 +87,9 @@ do <br>
 done <br>
 </code>
 	<p> After this code was executed, the application was opened in a web browser. The result was: </p>
-	<img src="AfterDOS.png" alt="App after after DoS attack" width="1000" height="500"/>
+	<img src="AfterDoS.png" alt="App after after DoS attack" width="1000" height="500">
 	
-	<p> Such an attack could be prevented in the following ways:
+	<p> Such an attack could be prevented in the following ways: </p>
 	<ol>
 	<li> Score submissions could be constrained to trusted clients by way of an 'API key'. For instance, for a key of 'spanaro', the submit request
 	     could be modified to have 'spanaro' as a field in the request body. For instance, the code in <code>\submit.json</code> could be modified to the following:<br>
@@ -102,17 +99,13 @@ done <br>
 		var grid = req.body.grid;<br>
 		var score = req.body.score;<br>
 		var created_at = new Date();<br>
-		if (key == 'spanaro' &(username !== undefined || grid !== undefined || score !== undefined)) { <br>
+		if (key == 'spanaro' &amp;(username !== undefined || grid !== undefined || score !== undefined)) { <br>
 			//Add grid, score username and created_at to the database <br>
 		}<br>
 		</code>
 	</li>
 	<li> It may be beneficial to limit the Origins the API is available to a set of trusted Origins. </li>
 	<li> A commerical MongoLabs database with larger capacity could be obtained for a <a href="https://addons.heroku.com/mongolab">small fee</a> </p>
-	</ol>
-	
-	</p>
-	
 	
 </li>
 
@@ -120,15 +113,14 @@ done <br>
 
 <h2> Conclusion </h2>
 <p>
-The listed issues with the Gamecenter made it easy to access confidential information in the application's database. Lack of verification of the user also allows for DoS attacks to easily be launched on the application.
-
-Luckily, most of these issues can be dealt with by:
+The listed issues with the Gamecenter made it easy to access confidential information in the application's database. Lack of verification of the user also allows for DoS attacks to easily be launched on the application.</p>
+<p>
+Luckily, most of these issues can be dealt with by: </p>
 <ul>
 <li> Escaping client input </li>
 <li> Introducing keys for trusted clients </li>
 <li> Not universally enabling CORS </li>
 </ul>
-</p>
 
 <p> These require very little restructring of the underlying code.</p>
 
@@ -140,6 +132,6 @@ Luckily, most of these issues can be dealt with by:
 
 <p> Therefore, it is advised that the APIs and database in the app be restructured, and a more thorough evaluation take place. This would cost &#36; 1000.
 </p>
-<body>
+</body>
 
 </html>
