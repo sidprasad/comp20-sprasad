@@ -110,7 +110,7 @@ done <br>
 </li>
 
 </ol>
-
+</ol>
 <h2> Conclusion </h2>
 <p>
 The listed issues with the Gamecenter made it easy to access confidential information in the application's database. Lack of verification of the user also allows for DoS attacks to easily be launched on the application.</p>
